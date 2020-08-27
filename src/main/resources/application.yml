@@ -1,0 +1,19 @@
+server:
+  port: 8084
+  
+spring:
+  profiles:
+    active: ${LOGGING_MODE:dev}
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  application:
+    name: service-discovery
+  cloud:
+    consul:
+      host: ${CONSUL_HOST:localhost}
+      port: ${CONSUL_PORT:8500}
+      discovery:
+        healthCheckInterval: 20s
+        enabled: ${CONSUL_ENABLED:false}
+        instanceId: ${spring.application.name}:${random.value}

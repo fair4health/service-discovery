@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: service-discovery
+  cloud:
+    consul:
+      host: ${CONSUL_HOST:localhost}
+      port: ${CONSUL_PORT:8500}
+      enabled: ${CONSUL_ENABLED:false}
+      config:
+        enabled: ${CONSUL_ENABLED:false}
+        failFast: ${CONSUL_ENABLED:false}
