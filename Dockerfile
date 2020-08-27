@@ -26,5 +26,5 @@ RUN ["mvn", "package"]
 
 FROM openjdk:11-jre-slim
 COPY --from=builder /code/target/service-discovery.war /
-EXPOSE 8084
+EXPOSE 8082
 CMD ["java", "-jar", "./service-discovery.war"]

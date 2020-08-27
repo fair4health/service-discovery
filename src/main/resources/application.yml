@@ -1,5 +1,5 @@
 server:
-  port: 8084
+  port: 8082
   
 spring:
   profiles:
@@ -17,3 +17,4 @@ spring:
         healthCheckInterval: 20s
         enabled: ${CONSUL_ENABLED:false}
         instanceId: ${spring.application.name}:${random.value}
+        health-check-url: http://${spring.cloud.client.ip-address}:${server.port}/actuator/health
