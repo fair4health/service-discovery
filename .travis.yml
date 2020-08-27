@@ -1,0 +1,52 @@
+# Copyright (C) 2020  Atos Spain SA. All rights reserved.
+# 
+# This file is part of the FAIR4Health Service Discovery.
+# 
+# This file is free software: you can redistribute it and/or modify it under the 
+# terms of the Apache License, Version 2.0 (the License);
+# 
+# http://www.apache.org/licenses/LICENSE-2.0
+# 
+# The software is provided "AS IS", without any warranty of any kind, express or implied,
+# including but not limited to the warranties of merchantability, fitness for a particular
+# purpose and noninfringement, in no event shall the authors or copyright holders be 
+# liable for any claim, damages or other liability, whether in action of contract, tort or
+# otherwise, arising from, out of or in connection with the software or the use or other
+# dealings in the software.
+# 
+# See README file for the full disclaimer information and LICENSE file for full license 
+# information in the project root.
+
+language: java
+
+sudo: false
+
+cache:
+  directories:
+    - "$HOME/.m2"
+    - "$HOME/.sonar/cache"
+
+env:
+  global:
+    - secure: "C/O390srWJWKNLpw9YYlr1Soy/a5EGY8F/UkBseGG8+O1998uWbkC3acKEebn3yjleABpcULgClCvF+WvUtPrcKzb7QEb7BqU8J5sQMuDOcVQjbnpRIsv7xx9O5MPm+qfX/Kd8UZGdpOhl6j2IkDbq0StMk5Z55nvsmQ6ZcCEBeXIjaiy/Dzq5f94UCXBi+lolbDUkWpv9M7ifphmfRYGrXq9xke1TSYRdyQQD+S9YlXUhbzrTkgoUgjrNGdoCD8PJSrJxuyDRHyLyFew2iEkaCPJY4I7o0JZbRW9fD+xTWNCPRjunLCp2O4uamodI0Mj7+jrhLiJ8HfqZDYlwHkm/PDWMO7Ee5asumF7AZEYUN3HwxMjECd9VngVD0ZlnC17G7gkukerxfRVusdvdfGmXg/eOAi5tewupBxM8LdbpYoG7RT9mzhp5IW6+kl37fvilbaJi9mlF1zaowZqnp4CnmdT2VIltK34BYN3sHTEwx+yE00grPvZZ1CPFt1qjuf0Uv4jloLJy1rOZtwfzjMIa0aOUsXkJW7chnDytiWPnv2J0jbxzrLUSWiqZ3E5A6KvWEJ3lBstpGS3WI7V7jYOjooBcACKKz8ccPMpqoGpFFoRYR+9k5Qv7W/zrToty4f4JYLoav/tN6GJUZMB9fuCjJu2IIftLosE5tH5Sw3XnM="
+    - secure: "ohO8X4AYqhQFY50CQMWh97S6c+Ujch3br6yUL3HUCiZ6+gncYFiROlltWFA3aXeDaDto3fXKxRMQ1PJL9e7MT7t/HrwLewp1rPbBbU9t9DXe2dHR9rm0SOwBIhAbENs9O98g7wbArWbo+q4ToagNGeukrI+vlDbkzQi6DPqWYvfRrzNhliYNyjZbxfvKViesOOUnfgdHtOe6g1qQzX4qo1crLsap6tcwyrFNYulb5ODwBMASydhbgKQ4/wY1Kcu1OOgTiDsaTCWP1Q/Pci7FcChAuy5NvnghkNUVFrt3hbnW3G48pl5Te1iiysaFtbtSs4KtZTLdXUHedNYC4RmPXaXnsEsjfdoLMbvevo+A2EcYNPyD26KqKjNJyR4JVVEfO66/286C5IECo/tbnv51HVCJ/ZxOVIzHpemYA3PcYoEBrDIPejPG/c6qcl6skz+qEnZ+RLMzcQyJb+RZpBBhPhQcS8/lr0YtRlDocpR2fgfqP+Jo1hLD1sjEImNxjONZAbs5KsdTs/A8+NrAdplbWkEY7pjOa72gU8EJh12t6NIRnhrmmpwCvpq9/GwD6UD7yKzKx3O6jHkH+lpFlhF9IQrHZ2s0LKr+TSBHkpY9smKLx799Iwd8ZwxtBF1viQF4FEzVqbsHMRiK3NrRlHHi8W7qnTYWTej6tLA4saJMbq0="
+    - secure: "o0D+XiXuGtChGYO4IAW+6m3vR7rCIu+gGfcwAjLQl9oHU0kPT82jT2+jGRyHG9Pp49lnogEDCDqMdupYv7XByZUq/bzltGSIBPb4zSaswOiOq1jIcTmH2Blk3m+fG4LwD2GM7s4j6RgB/OjIyLRrsWlhxPQLqKbqhxB3iPSiu05XsA2veJPbbCT7sfrQySrPpjiYWGB2N0Di/SUEytZzKZK3ucCkz9/y/iGbpIEIYhLm+ADMhI21FV5lK6J+FvWQe6AlsQp+Tbnm24gq/yAobwT1WU5DAmNr2s2KuFNQpI3c8do47aCMjuiSQyWd2WwU8PRTY6g4CrYCVYYBBh4v0LXcRc9sq70RiATtnXn1FdpvJbi92eNwoMRRtpJcx78zQDAXWHpfYOUmpV7eF4ta9eTSBSGZRQOZ1ZjbVEtwMIv0CK3rSBccPvTCiGhJAQS/STtN2ZICDaHupSoT4OnBzEfrkiyz0ahCKv/fpWsS25nuk377EFdDVrDYSqEFK/emMkELhR1mTkWBeU6GJjcOtW7OHvmwI4Unhc+wOXQh+ewiAl9x5mRJSncOt3bb0w13nv6gftBFI9VWpNicIDOG87eeDOmM62Q5usakpu9Ol0chag92U8l6V5N8CHdOfXaE1Ryi0s3YOaU6/EBM2ytfRzOtKGaBldDM4tXrBOS2VtI="
+    - secure: "eSOSKxbDAQ2ifgw1iU23YOFJf6NV0uBRo9c0Gr607V431Mu98zNH2bpLLAU0SIcTi76qgxN7TIZf8eKLveTZWp9AiKDbWiYtfiDbNdEpXqTfxeMRnBaoSF4GwEiaVU10D6KgfjC4uYzSh5ydLWEh1d+2Rmv08YSLVfAZcV13Iw9beaY46Ewqcby/NeDN9aOUwlOXJdba2qAjfo750DF/lGhqVlvSYXxuOLrK+cUB4LkyDVUrjO7KyF6BgTAlBtyehGbqhuSFFXgBRsaasS9L98fP+B609x3aXOXn5xmK0KFpkh1HeX8LrNTtDRfdAv1k1sMTxa2UJ++ni363USmRXjC68zdZmub1NSgU6ZYJS/7K+MkDtT9Zs7Ntpf4HVOqMRy+JrcCSdigiOLMe7IYbmevIfI8ma3Gpa0iF8H2IDKX9w6nBIPf/7TnHGMuNAcGbvu6x5pyOs/9nbavOv+KH5SdcP5zrJuNMzVn6adC+2A/tCp/R+t3/CYQv2nFAmzWak8WjKpXoNHZJZ1grHw96NxEV6eN37HoJKpB7t9X2tY7zuPy78UkEsl7Dfttc/wknT0MmfXZuY9aezTGZbgBYD/RzO2PRihXm0YNNrzK6r1eBHOMsnzct10sSWDoGfwRY0f/5LYZ7bv5wr0JhG+vBY6hdEF4XolB0I+31e2lngB0="
+    - secure: "DbvxndRZSoKwLIQlYLRVzmG1zLHhZPRJ61cyGb4OLSm44pnR8Dg2MLVkg8XL2kGSJ+UqJ2NeZ2YOGP/0W0NpZzbT4ssntRipkR9Mdl6Xs1cDrX93amUBP6NhSBe/0JrhDzFBayZ9C63Vq7VE/FiG8AH6Ez2h2wVr4SJYx/iTwMovRfJD93N+Y146ra4x5Q7TQzRU8cqRi/uYwQABWOeu+R7ptZLJoP1/dxmQeV7ZyNVchPZERW+3hKAxLEh0Hd3F1v4CSaILxpzWpxd1iMXjz9J3mZrup/iKijdpvVXv47b29GJId1dWP7eNl3MOpbSJzno4/UwuO7SdRDfrDtCGhx39gvM62Nbeen08bhedwowjRO4oI9x4kMS2hGES7NVedpqHMsIvw2zLfpw13ZqUIu4nybpiMpcstli6R43Ho0KVSIJXGfkev3iAXO+YFB3USk2ZWvtZy+bwB+n28ehAIxBciFLlG+VzZVHVr3ZsWOJPFLBx9StMPst5GiTt0oK1erobqvmajsw1pEhp2QXX9c91NuMB/m8ZQl3Ov8JlUG2qV1JzINhpdi9xlzC3cqwbWcnQyhzEd1oKP2XNyM4ilyGQ/wVUcxlMNBKRtcWFRXfO0mauekVJl0JcvjbXW5DvX2HKX/Oj1IbEaBOHaa9UZLAi6XkXaYqcyeOmmllxOzE="
+    - secure: "IbVa7oQeZGhRvEl0G14eXemB9kMVN5XEz9cu068yprpCzRnDg4ncNvAN1sVxGgDzZM9Pw9Wd1KvHHYDdae1faK0FAXcfEiiemNnY6d2bV8IhsnZdFznxUg1drQDnSaTG3X/UQQOzVDUnOFmLbWZfxBOycQEE6QlI2yIDd7clTI5QlcJdyo+d+lOErzeQK/cKx7PswxsQRD/KHrGjNR3Db4Ye99H1TJSZDOjoEqkBH0OfARCmdyEG6oN2fdN3qbHeXXkMne0mSMLUsNO/HmFObVzJlb6MxtByXHy/9PeMMPmPHZpmw5FvEEsGx/fbMvs8iAVphj38C3GIyE4vRXH2YMKNAjTO0g6pTWsjTMF3QRliwP0aKmM84xEh4weQxtvGA92My15xNPcSDNX0tE6gwx2meD0Ud9e3fdwSq0lUA9Nqu/4R34G59c3xIn+rsjR6kl0xsOKWHxpdULnX0FFE2rYpdrR1AQEtlQcdBpohMiybP5nW8oeINqRkJ/gXDviwnF41XWfQbk7VCE63xQs3378hoSSbjF5QpM3msy6PibADipHww+td6Vw5pRIb6lNLN3GMUk65Bhp3FK54OmUvhmEi9WqMmtbR+SvUPkTLK7gZ2tHP3Y+pPdXpmxO/Z9mPZBPUxwYdS1p5Ra53x+Za3n4NerGmFy07H23Kj7uOJwA="
+    - secure: "KomJDqkWla4Sj7WMy2a5kN9tdCaIKGqtCKLn245TGm8ZDYXMKImUBLWfwl4UACWHn5REko19CGHrxtF+3DN7Yz2K5GJ3SXKQVzaFx6pMex+uiR+mA3WHaYMvWkp8pTq7DVpYeE0vnmpsDuQKAZCmiNgUzRrrmV/0e1oDLp3FCbbvxzd86svdxTmlvbpuiaBBPNg4i2kZEskMGngGvQqoIefy+TnP9gkNFmxoknLkSHKT9aI3/SRDil0zdY1inAyKwNU0vqdBuzSUF3UJVJJ+KEvb5mqfD42LV3oZlB9Y/Vql7CGh6oEloYX5jGd1AZIk4gQOw7pRwUeYJiWHs5yP0HhnprucxfmCEhyC8wNBbEKz4PHQJ1OuLXVjPoZ7UBsRSus9HUMAGUhIkXYZz3OoQ9M8VVPkVxV0JMO3D1hArHayNqAv82CfjWOZLbqZ8aqcO33NsZPupO8SzGQnyA5jMgbwi+tckb7N/dCtmiTy3ZU+2E1HRAZ5DQi+12dfm3RZZvD579PWrethC0+FO1v8DPYYyDKnUZVIQc1o5dvQ6b6ByTgAlTRFFkD8Db/9+SQCL7mS2i7XV4JK0dcurtktxtD6W6brY7dQQxN9+jkKbxHLuipHdG9cz+X0TrEDueNxhVXT2WLx1Kylpf9+kTkzggg1c3ZctBfDGG9aI3EwO1w="
+    - secure: "GOdjy44eu7TAXmkFOGjZXzPDH7mh1r5Ka3VZ3ER0nCy/MqAY/hgKLwCQOdpoDSWr6yYj0rfc0qV/1HIk4wZrZReCmya4rfDjO2bM/ZNGzyy34hzcE+sdLoADkh32dJpWtRheUDfUKDCd/LYMIz6by2rDKDdXXX2FELT6I7nayhJ/03/zqiw+6ZYHo9p3QLP0DGkNAmuOgBm7pDSH5+TMCpr21hVbX5aKWiKt9jdQ2wmqinrlODAAK/sUf5VjowKYM8hXD7le1XRXy3fqGWCOxRbf+rWL2/dREzujKGVDi7QhGf3mZ4+wLQTspSJ4eCknQEWaBVWc6iU+6WhFoem9jBtqOJHJQ7e5LBgCYf343u08ExY6eq1Vj6rRp39SaYUfKBQLjCYGlBvFj86x53Guo9Q4y0n0+/rwo1WdvNX8WmrTvwZfODOASO5IjxCdAN16N8RXn4onCBJ/qLv1inwvwsoMP0X/l36gPxIB6KaimWBkcnjFZ7FvGG5+EkN7Xt7nwbWNgl6hh5tTep6oKbGAm1ASHa3HBQFkUUPMyLQu9D85pcQ1SB4HL1ytZT3a0rRIVaKVXsk7qpRhu1flv7NQdZs1MRcZswiXaTWYwq/Y97Zd8JxpYdlp9bV2bWxZ8YapdjQn4crAOEIHrEsxZIXPLJdzrk/mVkbevwZCAIdTCew="
+  
+addons:
+  sonarcloud:
+    organization: "fair4health"
+    token:
+      secure: "NBVPXeJkWe1saB+gVKINW4bK9UqIGh+UWsE1SyA+PQ1pcgGPiFXrQetw0yq9k3s7JaBf21coCVjnNwreeTO7lC50tOmKf+fDdxbt/h11RHQ3Ir6EfUNw1wAT4FNNkFVdQzOaNItWSyzzjyIBEUhIs9thHauwvKJbHv9wB9heGXMgX9NYrp56yj1yhemV0CplSV8JSHr5okkd6+daMedFHD0e3l0z41gXsT86fsdsp9PNpGe9XfzvVnynx6jC9Vyk/f4Vy/Q3MZOjN85m1h2IEmBjy+Yzuq9M4eI++KKHYUH0a8/endkQ6e7zICFT7HpMJg5qiRSymZV6sef/ev0Rw1QKRKUmJf/slHhyc44R3dfsT+CvPhMcP+HZr2TA7lYMh+Z2zB2teuPRoJ7PWSbdA8oRM7bdf5ZUQh1ScHXzRpHLgurG0GXmfVtZ04myzpi2fLf5Se7Z9LzS7x8ly1fobi5G3p/vKrj+4JZhxhlYIvusjfdTvafD8HIZW+kZdsN0+mlghVe+/RnydlSQBb480RkyvvnvwOHowa4LbdvEAceNOOhFpO5v/Xf/elfaJ7rJu/01RCncK92V4sUTAgvSJX0fFmnbXhGIrbMt8VedvYR+I1hzJlNh6CjWussWJPpIWrQa3JGuzXl0kA4Oe4KjUEJnXexPKc+tTRg+6uj7mBA="
+
+script:
+  - if [ "$TRAVIS_PULL_REQUEST" = "true" ]; then mvn clean test; mvn package -Dmaven.test.skip=true; fi
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then mvn clean test; mvn sonar:sonar; fi
+  - if [ "$TRAVIS_BRANCH" = "release" ]; then chmod +x .travis/prepare.sh && .travis/prepare.sh; mvn -s .travis/settings.xml -B release:clean release:prepare; git push --tags; mvn -s .travis/settings.xml -B release:perform; chmod +x .travis/push.sh && .travis/push.sh; fi
+
+after_success:
+- bash <(curl -s https://codecov.io/bash)
