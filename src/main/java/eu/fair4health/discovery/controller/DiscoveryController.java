@@ -35,13 +35,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.http.HttpHeaders;
 
 import com.ecwid.consul.v1.agent.model.NewService;
 
 import eu.fair4health.discovery.service.Service;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @EnableAutoConfiguration
@@ -54,23 +57,28 @@ public class DiscoveryController {
 
     @ApiOperation(value = "Register an agent in the system")
     @PostMapping("/register")
-    public void register(@RequestBody NewService service) {
-        log.info("Register instance for {}", service);
-        discoveryService.register(service);
+    public void register(@ApiParam(value = "Bearer <token>") 
+        @RequestHeader(HttpHeaders.AUTHORIZATION) String token, 
+        @RequestBody NewService service) {
+            log.info("Register instance for {}", service);
+            discoveryService.register(service);
     }
 
     @ApiOperation(value = "Discover agents in the system by name")
     @GetMapping("/discover/{name}")
-    public List<ServiceInstance> discover(@PathVariable("name") String name) {
-        log.info("Discover instances for service {}", name);
-        return discoveryService.discover(name);
+    public List<ServiceInstance> discover(@ApiParam(value = "Bearer <token>") 
+        @RequestHeader(HttpHeaders.AUTHORIZATION) String token, 
+        @PathVariable("name") String name) {
+            log.info("Discover instances for service {}", name);
+            return discoveryService.discover(name);
     }
 
 
     @ApiOperation(value = "Discover all the agents in the system")
     @GetMapping("/discover")
-    public List<ServiceInstance> discoverAll() {
-        log.info("Discover all the instances");
-        return discoveryService.discoverAll();
+    public List<ServiceInstance> discoverAll(@ApiParam(value = "Bearer <token>") 
+        @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+            log.info("Discover all the instances");
+            return discoveryService.discoverAll();
     }
 }
