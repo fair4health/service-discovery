@@ -32,6 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,14 +55,22 @@ public class DiscoveryController {
     @ApiOperation(value = "Register an agent in the system")
     @PostMapping("/register")
     public void register(@RequestBody NewService service) {
-        log.info("Register operation with {}", service);
+        log.info("Register instance for {}", service);
         discoveryService.register(service);
     }
 
     @ApiOperation(value = "Discover agents in the system by name")
-    @GetMapping("/discover")
-    public List<ServiceInstance> discover(@RequestParam String name) {
-        log.info("Discover operation with {}", name);
+    @GetMapping("/discover/{name}")
+    public List<ServiceInstance> discover(@PathVariable("name") String name) {
+        log.info("Discover instances for service {}", name);
         return discoveryService.discover(name);
+    }
+
+
+    @ApiOperation(value = "Discover all the agents in the system")
+    @GetMapping("/discover")
+    public List<ServiceInstance> discoverAll() {
+        log.info("Discover all the instances");
+        return discoveryService.discoverAll();
     }
 }
