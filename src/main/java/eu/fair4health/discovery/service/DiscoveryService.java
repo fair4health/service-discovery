@@ -27,7 +27,9 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -41,14 +43,37 @@ public class DiscoveryService implements Service {
     // Constants
     RestTemplate restTemplate = new RestTemplate();
 
+    // Inject the Discovery Client
+    @Autowired
+    private DiscoveryClient discoveryClient;
+
     @Override
     public void register(NewService service) {
         return;
     }
-    
+
     @Override
     public List<ServiceInstance> discover(String name) {
-        return new ArrayList<ServiceInstance>();
+        if (name.trim().isEmpty() == true)
+            return new ArrayList<ServiceInstance>();
+
+        List<ServiceInstance> instances = discoveryClient.getInstances(name);
+        return instances;
+    }
+
+    @Override
+    public List<ServiceInstance> discoverAll() {
+
+        List<ServiceInstance> instances = new ArrayList<ServiceInstance>();
+
+        List<String> services = discoveryClient.getServices();
+        for (String s : services) {
+            List<ServiceInstance> instancesByService = discoveryClient.getInstances(s);
+            for (ServiceInstance SI : instancesByService)
+                instances.add(SI);
+        }
+        
+        return instances;
     }
 
     public void setRestTemplate(RestTemplate restTemplate) {

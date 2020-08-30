@@ -34,5 +34,6 @@ import com.ecwid.consul.v1.agent.model.NewService;
 public interface Service {
 	public void register(NewService service);
         public List<ServiceInstance> discover(String name);
+        public List<ServiceInstance> discoverAll();
 }
 

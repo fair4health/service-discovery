@@ -28,11 +28,13 @@ import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.hamcrest.Matchers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -46,18 +48,18 @@ public class DiscoveryServiceTest {
      * 
      * @return the Calculator Service
      */
-    @TestConfiguration
+    /* @TestConfiguration
     static class DiscoveryServiceImplTestContextConfiguration {
 
         @Bean
-        public DiscoveryService authService() {
+        public DiscoveryService discoveryService() {
             return new DiscoveryService();
         }
-    }
+    } */
 
-    @Autowired
+    @InjectMocks
     private DiscoveryService discoveryService;
-
+    
     /**
      * SetUp the system to mock the services.
      * 

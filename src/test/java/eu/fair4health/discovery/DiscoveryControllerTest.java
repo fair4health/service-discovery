@@ -59,6 +59,8 @@ public class DiscoveryControllerTest {
     @Mock
     private DiscoveryService discoveryService;
 
+    private String authToken = "123456789";
+    
     /**
      * Init the Mockito annotations and MVC mock.
      * 
@@ -81,6 +83,8 @@ public class DiscoveryControllerTest {
         List<ServiceInstance> result = new ArrayList<ServiceInstance>();
         Mockito.when(discoveryService.discover("test"))
             .thenReturn(result);
+        Mockito.when(discoveryService.discoverAll())
+            .thenReturn(result);
     }
 
     /**
@@ -89,10 +93,24 @@ public class DiscoveryControllerTest {
      * @return void
      */
     @Test
-    public void discoverServiceByName_returnOk() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/discover?name=test"))
+    public void discoverInstancesByName_returnOk() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/discover?name=test")
+            .header("Authorization", "Bearer " + authToken))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
-        // .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-        // .andExpect(content().contentType("3"));
+    }
+    
+
+    /**
+     * Test the discover all instances controller mocking the service.
+     * 
+     * @return void
+     */
+    @Test
+    public void discoverAllInstances_returnOk() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/discover")
+            .header("Authorization", "Bearer " + authToken))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk());
     }
 }
