@@ -14,7 +14,8 @@ spring:
       host: ${CONSUL_HOST:localhost}
       port: ${CONSUL_PORT:8500}
       discovery:
-        healthCheckInterval: 20s
+        health-check-interval: ${CONSUL_HEALTH_CHECK_INTERVAL:10s}
+        health-check-timeout: ${CONSUL_HEALTH_CHECK_TIMEOUT:3s}
         enabled: ${CONSUL_ENABLED:false}
         instanceId: ${spring.application.name}:${random.value}
         health-check-url: http://${spring.cloud.client.ip-address}:${server.port}/actuator/health

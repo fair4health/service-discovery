@@ -22,25 +22,49 @@
  */
 package eu.fair4health.discovery.service;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import com.ecwid.consul.v1.ConsulClient;
 import com.ecwid.consul.v1.agent.model.NewService;
+
+import eu.fair4health.discovery.model.AgentService;
 
 @Component
 public class DiscoveryService implements Service {
 
     public static final Logger log = LoggerFactory.getLogger(DiscoveryService.class);
+    
+    // Consul properties
+    @Value("${spring.cloud.consul.host}")
+    private String consulHost;
 
-    // Constants
+    @Value("${spring.cloud.consul.port}")
+    private Integer consulPort;
+    
+    // Consul Service properties
+    @Value("${spring.cloud.consul.discovery.health-check-interval}")
+    private String healthCheckInterval;
+    
+    @Value("${spring.cloud.consul.discovery.health-check-timeout}")
+    private String healthCheckTimeout;
+    
+    private static final String HTTPS = "HTTPS";
+    private static final String SECURE = "secure=";
+    
+    // REST Template
     RestTemplate restTemplate = new RestTemplate();
 
     // Inject the Discovery Client
@@ -48,7 +72,44 @@ public class DiscoveryService implements Service {
     private DiscoveryClient discoveryClient;
 
     @Override
-    public void register(NewService service) {
+    public void register(AgentService service) throws MalformedURLException {
+        ConsulClient client = new ConsulClient(consulHost, consulPort);
+        
+        URL agentUrl = new URL(service.getUrl());
+        UUID uuid = UUID.randomUUID();
+
+        NewService newService = new NewService();
+        newService.setId(service.getName() + "-" + 
+            uuid.toString().replace("-", ""));
+        newService.setName(service.getName());
+        
+        Integer port = agentUrl.getPort();
+        if (port == -1)
+            port = agentUrl.getDefaultPort();
+        newService.setPort(port);
+        
+        if (service.getMetadata() != null)
+            newService.setMeta(service.getMetadata());
+        newService.setAddress(agentUrl.getHost());
+        
+        List<String> tags = service.getTags();
+        if (service.getTags() == null)
+            tags = new ArrayList<String>();
+        if (HTTPS.equalsIgnoreCase(agentUrl.getProtocol()))
+            tags.add(SECURE + Boolean.TRUE.toString());
+        else
+            tags.add(SECURE + Boolean.FALSE.toString());
+        
+        newService.setTags(tags);
+
+        NewService.Check serviceCheck = new NewService.Check();
+        serviceCheck.setHttp(service.getHealthCheck());
+        serviceCheck.setInterval(healthCheckInterval);
+        serviceCheck.setTimeout(healthCheckTimeout);
+        newService.setCheck(serviceCheck);
+        
+        client.agentServiceRegister(newService);
+
         return;
     }
 
