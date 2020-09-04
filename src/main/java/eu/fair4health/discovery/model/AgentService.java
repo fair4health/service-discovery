@@ -1,9 +1,9 @@
 /*
  * Copyright (C) 2020  Atos Spain SA. All rights reserved.
  * 
- * This file is part of the FAIR4Health Service Discovery project.
+ * This file is part of the Service Discovery.
  * 
- * This is free software: you can redistribute it and/or modify it under the 
+ * AgentService.java is free software: you can redistribute it and/or modify it under the 
  * terms of the Apache License, Version 2.0 (the License);
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
@@ -18,23 +18,28 @@
  * See README file for the full disclaimer information and LICENSE file for full license 
  * information in the project root.
  * 
- * FAIR4Health Service Discovery interface
+ * AgentService to register agents
  */
 
-package eu.fair4health.discovery.service;
+package eu.fair4health.discovery.model;
 
-import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
+import java.util.Map;
 
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.stereotype.Component;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import eu.fair4health.discovery.model.AgentService;
-
-@Component
-public interface Service {
-	public void register(AgentService service) throws MalformedURLException;
-        public List<ServiceInstance> discover(String name);
-        public List<ServiceInstance> discoverAll();
+@Data
+@Builder(toBuilder = true)
+@AllArgsConstructor
+@NoArgsConstructor
+public class AgentService {
+    private String name;
+    private String url;
+    private String healthCheck;
+    private Map<String, String> metadata;
+    private List<String> tags;
 }
-

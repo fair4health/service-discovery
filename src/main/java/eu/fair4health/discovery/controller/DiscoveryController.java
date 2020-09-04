@@ -23,6 +23,7 @@
 
 package eu.fair4health.discovery.controller;
 
+import java.net.MalformedURLException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -42,6 +43,7 @@ import org.springframework.http.HttpHeaders;
 
 import com.ecwid.consul.v1.agent.model.NewService;
 
+import eu.fair4health.discovery.model.AgentService;
 import eu.fair4health.discovery.service.Service;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -59,7 +61,7 @@ public class DiscoveryController {
     @PostMapping("/register")
     public void register(@ApiParam(value = "Bearer <token>") 
         @RequestHeader(HttpHeaders.AUTHORIZATION) String token, 
-        @RequestBody NewService service) {
+        @RequestBody AgentService service) throws MalformedURLException {
             log.info("Register instance for {}", service);
             discoveryService.register(service);
     }

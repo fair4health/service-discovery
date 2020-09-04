@@ -22,9 +22,11 @@
  */
 package eu.fair4health.discovery;
 
+import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +48,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import eu.fair4health.discovery.controller.DiscoveryController;
+import eu.fair4health.discovery.model.AgentService;
 import eu.fair4health.discovery.service.DiscoveryService;
 
 @SpringBootTest
@@ -77,14 +80,18 @@ public class DiscoveryControllerTest {
      * Mock the service calls for the different operations.
      * 
      * @return void
+     * @throws MalformedURLException 
      */
     @Before
-    public void setUp() {
+    public void setUp() throws MalformedURLException {
         List<ServiceInstance> result = new ArrayList<ServiceInstance>();
         Mockito.when(discoveryService.discover("test"))
             .thenReturn(result);
         Mockito.when(discoveryService.discoverAll())
             .thenReturn(result);
+        
+        DiscoveryService myService = mock(DiscoveryService.class);
+        Mockito.doNothing().when(myService).register(new AgentService());
     }
 
     /**
