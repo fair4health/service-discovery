@@ -76,11 +76,9 @@ public class DiscoveryService implements Service {
         ConsulClient client = new ConsulClient(consulHost, consulPort);
         
         URL agentUrl = new URL(service.getUrl());
-        UUID uuid = UUID.randomUUID();
 
         NewService newService = new NewService();
-        newService.setId(service.getServiceId() + "-" + 
-            uuid.toString().replace("-", ""));
+        newService.setId(service.getServiceId());
         newService.setName(service.getServiceId());
         
         Integer port = agentUrl.getPort();
