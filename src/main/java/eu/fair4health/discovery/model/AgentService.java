@@ -37,7 +37,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AgentService {
-    private String name;
+    private String serviceId;
     private String url;
     private String healthCheck;
     private Map<String, String> metadata;

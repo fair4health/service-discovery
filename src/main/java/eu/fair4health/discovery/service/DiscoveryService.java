@@ -79,9 +79,9 @@ public class DiscoveryService implements Service {
         UUID uuid = UUID.randomUUID();
 
         NewService newService = new NewService();
-        newService.setId(service.getName() + "-" + 
+        newService.setId(service.getServiceId() + "-" + 
             uuid.toString().replace("-", ""));
-        newService.setName(service.getName());
+        newService.setName(service.getServiceId());
         
         Integer port = agentUrl.getPort();
         if (port == -1)
@@ -114,11 +114,11 @@ public class DiscoveryService implements Service {
     }
 
     @Override
-    public List<ServiceInstance> discover(String name) {
-        if (name.trim().isEmpty() == true)
+    public List<ServiceInstance> discover(String serviceId) {
+        if (serviceId.trim().isEmpty() == true)
             return new ArrayList<ServiceInstance>();
 
-        List<ServiceInstance> instances = discoveryClient.getInstances(name);
+        List<ServiceInstance> instances = discoveryClient.getInstances(serviceId);
         return instances;
     }
 

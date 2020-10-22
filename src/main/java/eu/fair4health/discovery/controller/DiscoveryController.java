@@ -66,13 +66,13 @@ public class DiscoveryController {
             discoveryService.register(service);
     }
 
-    @ApiOperation(value = "Discover agents in the system by name")
-    @GetMapping("/discover/{name}")
+    @ApiOperation(value = "Discover agents in the system by service Id")
+    @GetMapping("/discover/{serviceId}")
     public List<ServiceInstance> discover(@ApiParam(value = "Bearer <token>") 
         @RequestHeader(HttpHeaders.AUTHORIZATION) String token, 
-        @PathVariable("name") String name) {
-            log.info("Discover instances for service {}", name);
-            return discoveryService.discover(name);
+        @PathVariable("serviceId") String serviceId) {
+            log.info("Discover instances for service {}", serviceId);
+            return discoveryService.discover(serviceId);
     }
 
 
