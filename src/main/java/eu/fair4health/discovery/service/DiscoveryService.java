@@ -135,6 +135,12 @@ public class DiscoveryService implements Service {
         return instances;
     }
 
+    @Override
+    public void deregister(String serviceId) {
+        ConsulClient client = new ConsulClient(consulHost, consulPort);
+        client.agentServiceDeregister(serviceId);
+    }
+    
     public void setRestTemplate(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
