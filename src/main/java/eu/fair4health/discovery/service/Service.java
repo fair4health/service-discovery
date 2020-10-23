@@ -36,5 +36,6 @@ public interface Service {
 	public void register(AgentService service) throws MalformedURLException;
         public List<ServiceInstance> discover(String serviceId);
         public List<ServiceInstance> discoverAll();
+        public void deregister(String serviceId);
 }
 
