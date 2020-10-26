@@ -73,6 +73,13 @@ public class DiscoveryService implements Service {
 
     @Override
     public void register(AgentService service) throws MalformedURLException {
+    	
+    	// Check if agent exist in Consul
+    	List<ServiceInstance> serviceList = discover(service.getServiceId()); 
+    	if (serviceList.size() > 0) {
+			return;
+		}
+    	
         ConsulClient client = new ConsulClient(consulHost, consulPort);
         
         URL agentUrl = new URL(service.getUrl());
