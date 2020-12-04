@@ -3,6 +3,9 @@
 FAIR4Health Service Discovery to register and discover PPDDM Agents in [Consul](https://www.consul.io/). 
 
 ## Next release
+### add path to service metadata  
+* Further information in the Pull Request [#15](https://github.com/fair4health/service-discovery/pull/15)
+## 0.0.2
 ### Changed the name of the parameter to serviceId  
 * Further information in the Pull Request [#11](https://github.com/fair4health/service-discovery/pull/11)
 ### Removed the addition of a hash to the service registry id at consul  
