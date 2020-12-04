@@ -26,6 +26,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -80,6 +81,7 @@ public class DiscoveryService implements Service {
 			return;
 		}
     	
+    	//If not exist it is created
         ConsulClient client = new ConsulClient(consulHost, consulPort);
         
         URL agentUrl = new URL(service.getUrl());
@@ -88,15 +90,22 @@ public class DiscoveryService implements Service {
         newService.setId(service.getServiceId());
         newService.setName(service.getServiceId());
         
+        //Port
         Integer port = agentUrl.getPort();
         if (port == -1)
             port = agentUrl.getDefaultPort();
         newService.setPort(port);
         
+        // Metadata
+        // Add Path and ref values to metadata
+        service.getMetadata().put("path", agentUrl.getPath());
+        service.getMetadata().put("ref",  agentUrl.getRef());
         if (service.getMetadata() != null)
             newService.setMeta(service.getMetadata());
+
         newService.setAddress(agentUrl.getHost());
         
+        //Tags
         List<String> tags = service.getTags();
         if (service.getTags() == null)
             tags = new ArrayList<String>();
@@ -107,6 +116,7 @@ public class DiscoveryService implements Service {
         
         newService.setTags(tags);
 
+        //HealthCheck
         NewService.Check serviceCheck = new NewService.Check();
         serviceCheck.setHttp(service.getHealthCheck());
         serviceCheck.setInterval(healthCheckInterval);
