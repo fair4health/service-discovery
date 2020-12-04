@@ -10,7 +10,7 @@
 
     <groupId>eu.fair4health</groupId>
     <artifactId>service-discovery</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>service-discovery</name>
@@ -36,7 +36,7 @@
         <url>https://github.com/fair4health/service-discovery.git</url>
         <connection>scm:git:https://github.com/fair4health/service-discovery.git</connection>
         <developerConnection>scm:git:https://github.com/fair4health/service-discovery.git</developerConnection>
-        <tag>0.0.3</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
