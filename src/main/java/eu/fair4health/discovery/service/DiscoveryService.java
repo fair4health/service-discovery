@@ -146,7 +146,9 @@ public class DiscoveryService implements Service {
         for (String s : services) {
             List<ServiceInstance> instancesByService = discoveryClient.getInstances(s);
             for (ServiceInstance SI : instancesByService)
-                instances.add(SI);
+            	//not add consul service created by default by consult
+            	if (!SI.getServiceId().equals("consul"))
+                	instances.add(SI);
         }
         
         return instances;
