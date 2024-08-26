@@ -27,7 +27,7 @@
         <jacoco.version>0.8.5</jacoco.version>
         <scm.version>1.11.2</scm.version>
         <license.version>2.0.0</license.version>
-        <springfox.swagger.version>2.9.2</springfox.swagger.version>
+        <springfox.swagger.version>2.10.0</springfox.swagger.version>
         <git.changelog.version>1.61</git.changelog.version>
         <spring-cloud-dependencies.version>Hoxton.SR6</spring-cloud-dependencies.version>
     </properties>
